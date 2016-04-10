@@ -1,6 +1,5 @@
 library(ggplot2)
 library(scales)
-library(ggvis)
 
 source("mcfc.R")
 
@@ -12,44 +11,38 @@ shinyServer(function(input, output) {
       Top100Shots <-
         head(goalsEachPlayerFrame[order(goalsEachPlayerFrame$TotalShots, decreasing = TRUE),], n = 100)
       
-#       convRatioPlot <-
-#         ggplot(Top100Shots, aes(x = Top100Shots$TotalShots, y = Top100Shots$GoalsScored))
-#       convRatioPlot <-
-#         convRatioPlot + geom_point(shape = 1, size = 2, col = "blue")
-#       convRatioPlot <-
-#         convRatioPlot + ggtitle("Coversion ratio for top 100 shots ")
-#       convRatioPlot <-
-#         convRatioPlot + theme(legend.title = element_blank())
-#       convRatioPlot <- convRatioPlot + xlab("Shots") + ylab("Goals")
-#       convRatioPlot <-
-#         convRatioPlot + geom_smooth(method = lm, se = FALSE, col = "red")
-#       convRatioPlot
-      
-      # Top100Shots %>% ggvis(~TotalShots, ~GoalsScored, fill = ~temperature, size = ~pressure) %>% layer_points()
-      Top100Shots %>% ggvis(~TotalShots, ~GoalsScored, fill := "red") %>% layer_points()
+      convRatioPlot <-
+        ggplot(Top100Shots, aes(x = Top100Shots$TotalShots, y = Top100Shots$GoalsScored))
+      convRatioPlot <-
+        convRatioPlot + geom_point(shape = 1, size = 2, col = "blue")
+      convRatioPlot <-
+        convRatioPlot + ggtitle("Coversion ratio for top 100 shots ")
+      convRatioPlot <-
+        convRatioPlot + theme(legend.title = element_blank())
+      convRatioPlot <- convRatioPlot + xlab("Shots") + ylab("Goals")
+      convRatioPlot <-
+        convRatioPlot + geom_smooth(method = lm, se = FALSE, col = "red")
+      convRatioPlot
     }
     else {
       goalsDataFrame <-
         head(goalsDataFrame[order(goalsDataFrame$TeamName, decreasing = TRUE),], n = 20)
       
-#       goalsPlot <-
-#         ggplot(goalsDataFrame, aes(goalsDataFrame$TeamName)) + ggtitle("Goal Difference")
-#       goalsPlot <-
-#         goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsScored, colour = "GoalsScored"))
-#       goalsPlot <-
-#         goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsAllowed, colour = "GoalsAllowed"))
-#       goalsPlot <-
-#         goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsDifference, colour = "GoalsDifference"))
-#       goalsPlot <- goalsPlot + xlab("Teams") + ylab("Goals")
-#       goalsPlot <- goalsPlot + labs("Legend")
-#       goalsPlot <-
-#         goalsPlot + theme(axis.text.x = element_text(
-#           angle = 50, size = 8, vjust = 0.5
-#         ))
-#       goalsPlot
-      
-      goalsDataFrame %>% ggvis(~TeamName, ~GoalsScored, fill := "red") %>% layer_points() %>% layer_points(~TeamName, ~GoalsAllowed, fill := "green") %>% layer_points(~TeamName, ~GoalsDifference, fill := "blue") %>% add_legend('fill', orient = 'left')
-      
+      goalsPlot <-
+        ggplot(goalsDataFrame, aes(goalsDataFrame$TeamName)) + ggtitle("Goal Difference")
+      goalsPlot <-
+        goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsScored, colour = "GoalsScored"))
+      goalsPlot <-
+        goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsAllowed, colour = "GoalsAllowed"))
+      goalsPlot <-
+        goalsPlot  + geom_point(aes(y = goalsDataFrame$GoalsDifference, colour = "GoalsDifference"))
+      goalsPlot <- goalsPlot + xlab("Teams") + ylab("Goals")
+      goalsPlot <- goalsPlot + labs("Legend")
+      goalsPlot <-
+        goalsPlot + theme(axis.text.x = element_text(
+          angle = 50, size = 8, vjust = 0.5
+        ))
+      goalsPlot
     }
   })
   
