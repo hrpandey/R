@@ -1,5 +1,5 @@
 nyc_data <-
-  read.csv("NYPD_Motor_Vehicle_Collisions.csv", stringsAsFactors = FALSE)
+  read.csv("data/NYPD_Motor_Vehicle_Collisions.csv", stringsAsFactors = FALSE)
 
 str(nyc_data)
 
