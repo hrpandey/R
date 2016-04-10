@@ -1,4 +1,8 @@
 library(scales)
+library(htmlwidgets)
+library(stringr)
+library(rbokeh)
+
 source("nyc_data.R")
 
 shinyServer(function(input, output) {

@@ -1,3 +1,7 @@
+library(htmlwidgets)
+library(stringr)
+library(rbokeh)
+
 shinyUI(fluidPage(
   tags$head(tags$style(
     HTML("
