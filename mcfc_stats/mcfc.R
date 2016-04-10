@@ -1,6 +1,6 @@
 # Load the EPL data
 
-eplData <- read.csv("Premier League 2011-12 Match by Match.csv")
+eplData <- read.csv("data/Premier League 2011-12 Match by Match.csv")
 
 # add the name of player ( FirstName + Surname)
 eplData$PlayerName <-
